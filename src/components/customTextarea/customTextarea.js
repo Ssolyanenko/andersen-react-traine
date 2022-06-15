@@ -14,7 +14,7 @@ class CustomTextarea extends Component {
       dash,
       first,
       onBlur,
-        onKeyUp
+        length,
     } = this.props;
     return (
       <>
@@ -26,11 +26,11 @@ class CustomTextarea extends Component {
           onChange={onChange}
           name={name}
           onBlur={onBlur}
-          onKeyUp={onKeyUp}
+          length={length}
           className="textareaItem"
         ></textarea>
         <span className="counter">
-          {zero}
+          {length}
           {dash}
           {counter}
         </span>

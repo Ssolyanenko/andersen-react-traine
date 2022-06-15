@@ -36,16 +36,52 @@ class Main extends React.Component {
       second: "",
       third: "",
       isSubmited: false,
+      length: 0,
     };
+    this.calculateChar = this.calculateChar.bind(this)
+    this.calculateChar1 = this.calculateChar1.bind(this)
+    this.calculateChar2 = this.calculateChar2.bind(this)
   }
+calculateChar = e =>{
+    const {value} = e.target
+    this.setState({length: e.target.value.length})
+  if (value.length > this.state.maxCounter) {
+    this.setState({
+      first: "Превышен лимит символов в поле",
+      maxCounter: "",
+      dash: "/",
+    });
+  }}
+  calculateChar1 = e =>{
+    const {value} = e.target
+    this.setState({zeroSecond: e.target.value.length})
+    if (value.length > this.state.maxCounter) {
+      this.setState({
+        second: "Превышен лимит символов в поле",
+        maxCounter: "",
+        dash: "/",
+      });
+    }
 
+}
+
+  calculateChar2 = e =>{
+    const {value} = e.target
+    this.setState({zeroThird: e.target.value.length})
+    if (value.length > this.state.maxCounter) {
+      this.setState({
+        third: "Превышен лимит символов в поле",
+        maxCounter: "",
+        dash: "/",
+      });
+    }
+  }
   validateForm = () => {
     let isValid = true;
     const errors = {};
     this.state.firstName.trim();
     this.state.lastName.trim();
     this.state.phone.trim();
-
     if (this.state.firstName.length <= 0) {
       errors.nameEr = "Поле пустое. Заполните пожалуйста";
     } else if (
@@ -133,72 +169,61 @@ class Main extends React.Component {
       second: "",
       third: "",
       isSubmited: false,
+      length:0
     });
   };
   countSymbols = (e) => {
-    const { name, value } = e.target;
-    if (name === "userAbout") {
-      this.setState({
-        maxLengthFirst: this.state.maxCounter - value.length,
-      });
-      this.setState({
-        zeroFirst: (this.state.zeroFirst += 1),
-      });
-
+    const {value, name} = e.target;
+    this.setState({value: e.target.value})
+      this.setState({length: this.state.length += e.target.value.trim().split(' ').length})
       if (value.length > this.state.maxCounter) {
         this.setState({
           first: "Превышен лимит символов в поле",
-          maxLengthFirst: "",
-          dash: "",
-          zeroFirst: "",
+          maxCounter: "",
+          dash: "/",
         });
       }
+
     }
 
-    if (name === "userSteak") {
 
-
+  countSymbols2 = (e) => {
+    const {value} = e.target;
+    this.setState({ value: e.target.value })
+    this.setState({ zeroSecond: this.state.zeroSecond += e.target.value.trim().split(' ').length})
+    if (value.length > this.state.maxCounter) {
       this.setState({
-        maxLengthSecond: this.state.maxCounter - value.length,
+        second: "Превышен лимит символов в поле",
+        maxCounter: "",
+        dashSecond: "/",
       });
-      this.setState({
-        zeroSecond: (this.state.zeroSecond += 1),
-      });
-
-      if (value.length > this.state.maxCounter) {
-        this.setState({
-          second: "Превышен лимит символов в поле",
-          maxLengthSecond: "",
-          dashSecond: "",
-          zeroSecond: "",
-        });
-      }
     }
 
-    if (name === "projectDescrip") {
-      this.setState({
-        maxLengthThird: this.state.maxCounter - value.length,
-      });
-      this.setState({
-        zeroThird: (this.state.zeroThird += 1),
-      });
+  }
 
-      if (value.length > this.state.maxCounter) {
-        this.setState({
-          third: "Превышен лимит символов в поле",
-          maxLengthThird: "",
-          dashThird: "",
-          zeroThird: "",
-        });
-      }
+  countSymbols3 = (e) => {
+    const {value} = e.target;
+    this.setState({ value: e.target.value })
+    this.setState({ zeroThird: this.state.zeroThird += e.target.value.trim().split(' ').length})
+
+    if (value.length > this.state.maxCounter) {
+      this.setState({
+        third: "Превышен лимит символов в поле",
+        maxCounter: "",
+        dashThird: "/",
+
+
+      });
     }
 
-    this.setState({
-      [name]: value,
-    });
-  };
+  }
+
+
+
+
 
   render() {
+    console.log(this.state.value)
     return (
       <div className="wrapper">
         <form
@@ -289,18 +314,17 @@ class Main extends React.Component {
           <CustomTextarea
             rows="7"
             name="userAbout"
-            onChange={this.onChange}
+            onChange={this.calculateChar}
+            onBlur={this.onBlur}
             counter={this.state.maxLengthFirst}
             first={this.state.first}
-            zero={this.state.zeroFirst}
+            length={this.state.length}
             dash={this.state.dash}
             state={this.state}
             label="О себе:"
             placeholder="Напишите о себе..."
             isSubmited={this.state.isSubmited}
             value={this.state.userAbout}
-            onBlur={this.onBlur}
-            onKeyUp={this.countSymbols}
           />
 
           <div className="color-div">{this.state.errors.aboutEr}</div>
@@ -308,34 +332,35 @@ class Main extends React.Component {
           <CustomTextareaSecond
             rows="7"
             name="userSteak"
+            onChange={this.calculateChar1}
+            onBlur={this.onBlur}
             counter={this.state.maxLengthSecond}
             second={this.state.second}
-            zero={this.state.zeroSecond}
-            dashSecond={this.state.dashSecond}
+            zeroSecond={this.state.zeroSecond}
+            dash={this.state.dash}
             state={this.state}
             label="Стек технологий:"
             placeholder="Напишите технологии..."
             isSubmited={this.state.isSubmited}
             value={this.state.userSteak}
-            onBlur={this.onBlur}
-            onKeyUp={this.countSymbols}
           />
           <div className="color-div">{this.state.errors.steakEr}</div>
 
           <CustomTextareaThird
             rows="7"
             name="projectDescrip"
+            onBlur={this.onBlur}
+            onChange={this.calculateChar2}
             counter={this.state.maxLengthThird}
             third={this.state.third}
-            zero={this.state.zeroThird}
-            dashThird={this.state.dashThird}
+            zeroThird={this.state.zeroThird}
+            dash={this.state.dash}
             state={this.state}
             label="Описание последнего проекта:"
             placeholder="Опишите ваш последний проект..."
             isSubmited={this.state.isSubmited}
             value={this.state.projectDescrip}
-            onBlur={this.onBlur}
-            onKeyUp={this.countSymbols}
+
           />
           <div className="color-div">{this.state.errors.projectEr}</div>
           <div className="buttons">

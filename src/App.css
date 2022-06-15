@@ -112,6 +112,7 @@ textarea {
     border: 2px solid var(--color-green);
     padding: 20px 20px ;
     margin-bottom: 30px;
+    word-wrap: break-word
 }
 .btnWrap{
     margin: 0 auto;
