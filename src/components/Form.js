@@ -6,6 +6,7 @@ import "../App.css";
 import CustomInput from "./customInput";
 import MaskedInput from "react-text-mask/dist/reactTextMask";
 
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
