@@ -156,6 +156,8 @@ class Main extends React.Component {
     }
 
     if (name === "userSteak") {
+
+
       this.setState({
         maxLengthSecond: this.state.maxCounter - value.length,
       });
@@ -306,7 +308,6 @@ class Main extends React.Component {
           <CustomTextareasecond
             rows="7"
             name="userSteak"
-            onChange={this.countSymbols}
             counter={this.state.maxLengthSecond}
             second={this.state.second}
             zero={this.state.zeroSecond}
@@ -324,7 +325,6 @@ class Main extends React.Component {
           <CustomTextareaThird
             rows="7"
             name="projectDescrip"
-            onChange={this.countSymbols}
             counter={this.state.maxLengthThird}
             third={this.state.third}
             zero={this.state.zeroThird}
