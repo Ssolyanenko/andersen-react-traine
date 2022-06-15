@@ -1,4 +1,4 @@
-import styles from "./App.css";
+import './App.css';
 import React from "react";
 import { Template } from "./components/Template";
 import Main from "./components/Form";

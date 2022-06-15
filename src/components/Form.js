@@ -2,7 +2,6 @@ import React from "react";
 import CustomTextarea from "./customTextarea/customTextarea";
 import CustomTextareasecond from "./customTextarea/customTextareasecond";
 import CustomTextareaThird from "./customTextarea/CustomTextareaThird";
-import "../App.css";
 import CustomInput from "./customInput";
 import MaskedInput from "react-text-mask/dist/reactTextMask";
 
