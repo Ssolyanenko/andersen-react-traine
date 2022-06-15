@@ -1,6 +1,6 @@
 import React from "react";
 import CustomTextarea from "./customTextarea/customTextarea";
-import CustomTextareasecond from "./customTextarea/customTextareasecond";
+import CustomTextareaSecond from "./customTextarea/customTextareaSecond";
 import CustomTextareaThird from "./customTextarea/CustomTextareaThird";
 import CustomInput from "./customInput";
 import MaskedInput from "react-text-mask/dist/reactTextMask";
@@ -305,7 +305,7 @@ class Main extends React.Component {
 
           <div className="color-div">{this.state.errors.aboutEr}</div>
 
-          <CustomTextareasecond
+          <CustomTextareaSecond
             rows="7"
             name="userSteak"
             counter={this.state.maxLengthSecond}
