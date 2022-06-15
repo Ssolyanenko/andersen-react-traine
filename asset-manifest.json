@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-form-class-components/static/css/main.1ce7e383.css",
+    "main.js": "/react-form-class-components/static/js/main.fb3053b8.js",
+    "index.html": "/react-form-class-components/index.html",
+    "main.1ce7e383.css.map": "/react-form-class-components/static/css/main.1ce7e383.css.map",
+    "main.fb3053b8.js.map": "/react-form-class-components/static/js/main.fb3053b8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1ce7e383.css",
+    "static/js/main.fb3053b8.js"
+  ]
+}
