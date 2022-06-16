@@ -10,7 +10,6 @@ class CustomTextarea extends Component {
       rows,
       counter,
       placeholder,
-      zero,
       dash,
       first,
       onBlur,

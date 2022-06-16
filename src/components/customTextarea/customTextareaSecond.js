@@ -14,7 +14,7 @@ class CustomTextarea extends Component {
       dash,
       second,
       onBlur,
-        onKeyUp
+      onKeyUp,
     } = this.props;
     return (
       <>

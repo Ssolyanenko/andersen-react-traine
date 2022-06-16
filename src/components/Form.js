@@ -5,7 +5,6 @@ import CustomTextareaThird from "./customTextarea/CustomTextareaThird";
 import CustomInput from "./customInput";
 import MaskedInput from "react-text-mask/dist/reactTextMask";
 
-
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -15,15 +14,11 @@ class Main extends React.Component {
       date: "",
       phone: "",
       link: "",
-      counterTextarea: 600,
-      maxCounter: 600,
       header: "",
       userAbout: "",
       userSteak: "",
       projectDescrip: "",
       errors: "",
-      count: 0,
-      zeroFirst: 0,
       zeroSecond: 0,
       zeroThird: 0,
       maxLengthFirst: 600,
@@ -38,44 +33,75 @@ class Main extends React.Component {
       isSubmited: false,
       length: 0,
     };
-    this.calculateChar = this.calculateChar.bind(this)
-    this.calculateChar1 = this.calculateChar1.bind(this)
-    this.calculateChar2 = this.calculateChar2.bind(this)
+    this.calculateChar = this.calculateChar.bind(this);
+    this.calculateChar1 = this.calculateChar1.bind(this);
+    this.calculateChar2 = this.calculateChar2.bind(this);
   }
-calculateChar = e =>{
-    const {value} = e.target
-    this.setState({length: e.target.value.length})
-  if (value.length > this.state.maxCounter) {
-    this.setState({
-      first: "Превышен лимит символов в поле",
-      maxCounter: "",
-      dash: "/",
-    });
-  }}
-  calculateChar1 = e =>{
-    const {value} = e.target
-    this.setState({zeroSecond: e.target.value.length})
-    if (value.length > this.state.maxCounter) {
+  calculateChar = (e) => {
+    const errors = {};
+    const { value } = e.target;
+    this.setState({ length: e.target.value.length });
+    if (value.length > this.state.maxLengthFirst) {
+      this.setState({
+        first: "Превышен лимит символов в поле",
+        dash: "/",
+      });
+    } else if (value.length === 0) {
+      this.setState({
+        first: "Поле пустое. Заполните пожалуйста",
+      });
+    } else if (value.length <= this.state.maxLengthFirst) {
+      this.setState({
+        first: "",
+        dash: "/",
+      });
+    }
+  };
+
+  calculateChar1 = (e) => {
+    const { value } = e.target;
+    this.setState({ zeroSecond: e.target.value.length });
+    if (value.length > this.state.maxLengthSecond) {
       this.setState({
         second: "Превышен лимит символов в поле",
-        maxCounter: "",
+        dash: "/",
+      });
+    } else if (value.length <= this.state.maxLengthSecond) {
+      this.setState({
+        second: "",
+        dash: "/",
+      });
+    } else if (value.length === 0) {
+      this.setState({
+        second: "Поле пустое. Заполните пожалуйста",
+      });
+    } else if (value.length <= this.state.maxLengthSecond) {
+      this.setState({
+        second: "",
         dash: "/",
       });
     }
+  };
 
-}
-
-  calculateChar2 = e =>{
-    const {value} = e.target
-    this.setState({zeroThird: e.target.value.length})
-    if (value.length > this.state.maxCounter) {
+  calculateChar2 = (e) => {
+    const { value } = e.target;
+    this.setState({ zeroThird: e.target.value.length });
+    if (value.length > this.state.maxLengthThird) {
       this.setState({
         third: "Превышен лимит символов в поле",
-        maxCounter: "",
+        dash: "/",
+      });
+    } else if (value.length === 0) {
+      this.setState({
+        third: "Поле пустое. Заполните пожалуйста",
+      });
+    } else if (value.length <= this.state.maxLengthThird) {
+      this.setState({
+        third: "",
         dash: "/",
       });
     }
-  }
+  };
   validateForm = () => {
     let isValid = true;
     const errors = {};
@@ -111,17 +137,24 @@ calculateChar = e =>{
     }
     if (this.state.projectDescrip.length <= 0) {
       errors.projectEr = "Поле пустое. Заполните пожалуйста";
+    } else if (this.state.projectDescrip.length > this.state.maxLengthThird) {
+      errors.projectEr = " ";
     }
     if (this.state.userAbout.length <= 0) {
       errors.aboutEr = "Поле пустое. Заполните пожалуйста";
+    } else if (this.state.userAbout.length > this.state.maxLengthFirst) {
+      errors.aboutEr = " ";
     }
     if (this.state.userSteak.length <= 0) {
       errors.steakEr = "Поле пустое. Заполните пожалуйста";
+    } else if (this.state.userSteak.length > this.state.maxLengthSecond) {
+      errors.steakEr = " ";
     }
 
     this.setState({ errors });
 
     if (Object.keys(errors).length === 0) {
+      console.log(Object.keys(errors));
       this.props.changeState(this.state);
     }
 
@@ -148,14 +181,10 @@ calculateChar = e =>{
       date: "",
       phone: "",
       link: "",
-      counterTextarea: 600,
-      maxCounter: 600,
       header: "",
       userAbout: "",
       userSteak: "",
       projectDescrip: "",
-      errors: "",
-      count: 0,
       zeroFirst: 0,
       zeroSecond: 0,
       zeroThird: 0,
@@ -169,61 +198,11 @@ calculateChar = e =>{
       second: "",
       third: "",
       isSubmited: false,
-      length:0
+      length: 0,
     });
   };
-  countSymbols = (e) => {
-    const {value, name} = e.target;
-    this.setState({value: e.target.value})
-      this.setState({length: this.state.length += e.target.value.trim().split(' ').length})
-      if (value.length > this.state.maxCounter) {
-        this.setState({
-          first: "Превышен лимит символов в поле",
-          maxCounter: "",
-          dash: "/",
-        });
-      }
-
-    }
-
-
-  countSymbols2 = (e) => {
-    const {value} = e.target;
-    this.setState({ value: e.target.value })
-    this.setState({ zeroSecond: this.state.zeroSecond += e.target.value.trim().split(' ').length})
-    if (value.length > this.state.maxCounter) {
-      this.setState({
-        second: "Превышен лимит символов в поле",
-        maxCounter: "",
-        dashSecond: "/",
-      });
-    }
-
-  }
-
-  countSymbols3 = (e) => {
-    const {value} = e.target;
-    this.setState({ value: e.target.value })
-    this.setState({ zeroThird: this.state.zeroThird += e.target.value.trim().split(' ').length})
-
-    if (value.length > this.state.maxCounter) {
-      this.setState({
-        third: "Превышен лимит символов в поле",
-        maxCounter: "",
-        dashThird: "/",
-
-
-      });
-    }
-
-  }
-
-
-
-
 
   render() {
-    console.log(this.state.value)
     return (
       <div className="wrapper">
         <form
@@ -307,7 +286,6 @@ calculateChar = e =>{
             value={this.state.link}
             onBlur={this.onBlur}
             onChange={this.onChange}
-
           />
           <div className="color-div">{this.state.errors.linkEr}</div>
 
@@ -360,7 +338,6 @@ calculateChar = e =>{
             placeholder="Опишите ваш последний проект..."
             isSubmited={this.state.isSubmited}
             value={this.state.projectDescrip}
-
           />
           <div className="color-div">{this.state.errors.projectEr}</div>
           <div className="buttons">

@@ -10,11 +10,11 @@ class CustomTextarea extends Component {
       rows,
       counter,
       placeholder,
-        zeroThird,
-        third,
+      zeroThird,
+      third,
       dash,
       onBlur,
-        onKeyUp
+      onKeyUp,
     } = this.props;
     return (
       <>
@@ -34,7 +34,7 @@ class CustomTextarea extends Component {
           {dash}
           {counter}
         </span>
-          <span className="errorMax">{third}</span>
+        <span className="errorMax">{third}</span>
       </>
     );
   }
