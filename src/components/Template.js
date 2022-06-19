@@ -27,7 +27,7 @@ export class Template extends React.Component {
           <h4>Описание последнего проекта: {project} </h4>
         </div>
         <div className="btnWrap">
-          <button className="" type="back" onClick={() => backToForm()}>
+          <button className="" type="back" onClick={backToForm}>
             Back to form
           </button>
         </div>

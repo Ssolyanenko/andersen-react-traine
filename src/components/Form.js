@@ -1,11 +1,10 @@
 import React from "react";
 import CustomTextarea from "./customTextarea/customTextarea";
-import CustomTextareaSecond from "./customTextarea/customTextareaSecond";
-import CustomTextareaThird from "./customTextarea/CustomTextareaThird";
 import CustomInput from "./customInput";
 import MaskedInput from "react-text-mask/dist/reactTextMask";
 
-class Main extends React.Component {
+const maxLength = 600
+class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,95 +18,73 @@ class Main extends React.Component {
       userSteak: "",
       projectDescrip: "",
       errors: "",
-      zeroSecond: 0,
-      zeroThird: 0,
-      maxLengthFirst: 600,
-      maxLengthSecond: 600,
-      maxLengthThird: 600,
-      dash: "/",
-      dashSecond: "/",
-      dashThird: "/",
-      first: "",
-      second: "",
-      third: "",
       isSubmited: false,
-      length: 0,
+      length:0,
+      length2:0,
+      length3:0,
     };
-    this.calculateChar = this.calculateChar.bind(this);
-    this.calculateChar1 = this.calculateChar1.bind(this);
-    this.calculateChar2 = this.calculateChar2.bind(this);
+
+
   }
   calculateChar = (e) => {
-    const errors = {};
-    const { value } = e.target;
-    this.setState({ length: e.target.value.length });
-    if (value.length > this.state.maxLengthFirst) {
-      this.setState({
-        first: "Превышен лимит символов в поле",
-        dash: "/",
-      });
-    } else if (value.length === 0) {
-      this.setState({
-        first: "Поле пустое. Заполните пожалуйста",
-      });
-    } else if (value.length <= this.state.maxLengthFirst) {
-      this.setState({
-        first: "",
-        dash: "/",
-      });
-    }
-  };
 
-  calculateChar1 = (e) => {
-    const { value } = e.target;
-    this.setState({ zeroSecond: e.target.value.length });
-    if (value.length > this.state.maxLengthSecond) {
-      this.setState({
-        second: "Превышен лимит символов в поле",
-        dash: "/",
-      });
-    } else if (value.length <= this.state.maxLengthSecond) {
-      this.setState({
-        second: "",
-        dash: "/",
-      });
-    } else if (value.length === 0) {
-      this.setState({
-        second: "Поле пустое. Заполните пожалуйста",
-      });
-    } else if (value.length <= this.state.maxLengthSecond) {
-      this.setState({
-        second: "",
-        dash: "/",
-      });
-    }
-  };
+    const { value,name,} = e.target;
 
-  calculateChar2 = (e) => {
-    const { value } = e.target;
-    this.setState({ zeroThird: e.target.value.length });
-    if (value.length > this.state.maxLengthThird) {
-      this.setState({
-        third: "Превышен лимит символов в поле",
-        dash: "/",
-      });
-    } else if (value.length === 0) {
-      this.setState({
-        third: "Поле пустое. Заполните пожалуйста",
-      });
-    } else if (value.length <= this.state.maxLengthThird) {
-      this.setState({
-        third: "",
-        dash: "/",
-      });
+if(name === "userAbout") {
+  this.setState({length: e.target.value.length});
+  if (value.length > maxLength) {
+    this.setState({
+      error: "Превышен лимит символов в поле",
+    });
+  } else if (value.length === 0) {
+    this.setState({
+      error: "Поле пустое. Заполните пожалуйста",
+    });
+  } else if (value.length <= maxLength) {
+    this.setState({
+      error: "",
+    });
+  }
+}
+
+    if (name === "userSteak") {
+      this.setState({length2: e.target.value.length});
+      if (value.length > maxLength) {
+        this.setState({
+          error2: "Превышен лимит символов в поле",
+        });
+      } else if (value.length === 0) {
+        this.setState({
+          error2: "Поле пустое. Заполните пожалуйста",
+        });
+      } else if (value.length <= maxLength) {
+        this.setState({
+          error2: "",
+        });
+      }
     }
-  };
+    if (name === "projectDescrip") {
+      this.setState({length3: e.target.value.length});
+      if (value.length > maxLength) {
+        this.setState({
+          error3: "Превышен лимит символов в поле",
+        });
+      } else if (value.length === 0) {
+        this.setState({
+          error3: "Поле пустое. Заполните пожалуйста",
+        });
+      } else if (value.length <= maxLength) {
+        this.setState({
+          error3: "",
+        });
+      }
+
+
+    }
+}
+
   validateForm = () => {
-    let isValid = true;
     const errors = {};
-    this.state.firstName.trim();
-    this.state.lastName.trim();
-    this.state.phone.trim();
     if (this.state.firstName.length <= 0) {
       errors.nameEr = "Поле пустое. Заполните пожалуйста";
     } else if (
@@ -137,17 +114,17 @@ class Main extends React.Component {
     }
     if (this.state.projectDescrip.length <= 0) {
       errors.projectEr = "Поле пустое. Заполните пожалуйста";
-    } else if (this.state.projectDescrip.length > this.state.maxLengthThird) {
+    } else if (this.state.projectDescrip.length > maxLength) {
       errors.projectEr = " ";
     }
     if (this.state.userAbout.length <= 0) {
       errors.aboutEr = "Поле пустое. Заполните пожалуйста";
-    } else if (this.state.userAbout.length > this.state.maxLengthFirst) {
+    } else if (this.state.userAbout.length > maxLength) {
       errors.aboutEr = " ";
     }
     if (this.state.userSteak.length <= 0) {
       errors.steakEr = "Поле пустое. Заполните пожалуйста";
-    } else if (this.state.userSteak.length > this.state.maxLengthSecond) {
+    } else if (this.state.userSteak.length > maxLength) {
       errors.steakEr = " ";
     }
 
@@ -158,7 +135,6 @@ class Main extends React.Component {
       this.props.changeState(this.state);
     }
 
-    return isValid;
   };
 
   onChange = (e) => {
@@ -172,6 +148,7 @@ class Main extends React.Component {
   };
   onBlur = (e) => {
     this.setState({ [e.target.name]: e.target.value.trim() });
+    this.calculateChar()
   };
   onReset = (e) => {
     e.preventDefault();
@@ -185,20 +162,12 @@ class Main extends React.Component {
       userAbout: "",
       userSteak: "",
       projectDescrip: "",
-      zeroFirst: 0,
-      zeroSecond: 0,
-      zeroThird: 0,
-      maxLengthFirst: 600,
-      maxLengthSecond: 600,
-      maxLengthThird: 600,
-      dash: "/",
-      dashSecond: "/",
-      dashThird: "/",
-      first: "",
-      second: "",
-      third: "",
       isSubmited: false,
-      length: 0,
+      errors: "",
+      error:"",
+      error2:"",
+      error3:""
+
     });
   };
 
@@ -208,7 +177,7 @@ class Main extends React.Component {
         <form
           className="form"
           action="#"
-          onChange={this.onChange}
+
           onSubmit={this.onSubmit}
           onReset={this.onReset}
         >
@@ -239,6 +208,7 @@ class Main extends React.Component {
             onChange={this.onChange}
           />
           <div className="color-div">{this.state.errors.surnameEr}</div>
+
           <CustomInput
             type="date"
             name="date"
@@ -251,6 +221,7 @@ class Main extends React.Component {
           />
           <div className="color-div">{this.state.errors.dateEr}</div>
           <label>Телефон:</label>
+
           <MaskedInput
             type="phone"
             name="phone"
@@ -286,6 +257,7 @@ class Main extends React.Component {
             value={this.state.link}
             onBlur={this.onBlur}
             onChange={this.onChange}
+
           />
           <div className="color-div">{this.state.errors.linkEr}</div>
 
@@ -294,50 +266,51 @@ class Main extends React.Component {
             name="userAbout"
             onChange={this.calculateChar}
             onBlur={this.onBlur}
-            counter={this.state.maxLengthFirst}
+            maxLength={maxLength}
             first={this.state.first}
             length={this.state.length}
-            dash={this.state.dash}
             state={this.state}
             label="О себе:"
             placeholder="Напишите о себе..."
             isSubmited={this.state.isSubmited}
             value={this.state.userAbout}
+            error={this.state.error}
+
           />
 
           <div className="color-div">{this.state.errors.aboutEr}</div>
 
-          <CustomTextareaSecond
+          <CustomTextarea
             rows="7"
             name="userSteak"
-            onChange={this.calculateChar1}
+            onChange={this.calculateChar}
             onBlur={this.onBlur}
-            counter={this.state.maxLengthSecond}
-            second={this.state.second}
-            zeroSecond={this.state.zeroSecond}
-            dash={this.state.dash}
+            maxLength={maxLength}
+            first={this.state.first}
             state={this.state}
+            length={this.state.length2}
             label="Стек технологий:"
             placeholder="Напишите технологии..."
             isSubmited={this.state.isSubmited}
             value={this.state.userSteak}
+            error={this.state.error2}
           />
           <div className="color-div">{this.state.errors.steakEr}</div>
 
-          <CustomTextareaThird
+          <CustomTextarea
             rows="7"
             name="projectDescrip"
             onBlur={this.onBlur}
-            onChange={this.calculateChar2}
-            counter={this.state.maxLengthThird}
-            third={this.state.third}
-            zeroThird={this.state.zeroThird}
-            dash={this.state.dash}
+            onChange={this.calculateChar}
+            maxLength={maxLength}
+            first={this.state.first}
+            length={this.state.length3}
             state={this.state}
             label="Описание последнего проекта:"
             placeholder="Опишите ваш последний проект..."
             isSubmited={this.state.isSubmited}
             value={this.state.projectDescrip}
+            error={this.state.error3}
           />
           <div className="color-div">{this.state.errors.projectEr}</div>
           <div className="buttons">
@@ -356,4 +329,4 @@ class Main extends React.Component {
     );
   }
 }
-export default Main;
+export default Form;

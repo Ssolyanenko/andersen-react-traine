@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import { Template } from "./components/Template";
-import Main from "./components/Form";
+import Form from "./components/Form";
 
 class App extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class App extends React.Component {
       );
     }
 
-    return <Main changeState={this.changeState} />;
+    return <Form changeState={this.changeState} />;
   }
 }
 

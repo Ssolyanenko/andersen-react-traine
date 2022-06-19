@@ -8,13 +8,20 @@ class CustomTextarea extends Component {
       state,
       label,
       rows,
-      counter,
       placeholder,
-      dash,
-      first,
-      onBlur,
-        length,
+        maxLength,
+         onBlur,
+         length,
+        length2,
+        length3,
+        error,
+        error2,
+        error3
+
     } = this.props;
+
+
+
     return (
       <>
         <label className="textareaLabel">{label}</label>
@@ -29,11 +36,13 @@ class CustomTextarea extends Component {
           className="textareaItem"
         ></textarea>
         <span className="counter">
-          {length}
-          {dash}
-          {counter}
+            {length}
+            {length2}
+            {length3}
+        /
+            {maxLength}
         </span>
-        <span className="errorMax">{first}</span>
+        <span className="errorMax">{error}{error2}{error3}</span>
       </>
     );
   }
