@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import React from "react";
 import { Template } from "./components/Template";
 import Form from "./components/Form";

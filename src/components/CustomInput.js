@@ -1,4 +1,3 @@
-
 import React from "react";
 
 class CustomInput extends React.Component {
