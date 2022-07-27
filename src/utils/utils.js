@@ -7,6 +7,5 @@ export const validatePhone = (val) => {
     .slice(1, 5)
     .filter((item) => item !== "")
     .join("-");
-
   return mask;
 };
