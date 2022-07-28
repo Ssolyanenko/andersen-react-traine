@@ -1,6 +1,6 @@
 import React from "react";
 
-export class Template extends React.Component {
+export class CustomTemplate extends React.Component {
   render() {
     const {
       firstName,

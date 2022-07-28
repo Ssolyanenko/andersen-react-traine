@@ -1,11 +1,12 @@
 import React from "react";
-import CustomTextarea from "./customTextarea/customTextarea";
-import CustomInput from "./CustomInput";
-import {validatePhone} from "../utils/utils";
+import CustomTextarea from "../CustomTextarea/CustomTextarea";
+import CustomInput from "../CustomInput/CustomInput";
+import {validatePhone} from "../../utils/utils";
+import s from './CustomForm.module.css'
 
 const maxLength = 600;
 
-class Form extends React.Component {
+class CustomForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -153,7 +154,6 @@ class Form extends React.Component {
     };
     onBlur = (e) => {
         this.setState({[e.target.name]: e.target.value.trim()});
-        // this.calculateChar()
     };
     onReset = (e) => {
         e.preventDefault();
@@ -177,14 +177,12 @@ class Form extends React.Component {
 
     render() {
         return (
-            <div className="wrapper">
+            <div className={s.wrapper}>
                 <form
-                    className="form"
-                    action="#"
                     onSubmit={this.onSubmit}
                     onReset={this.onReset}
                 >
-                    <header className="header">Создание анкеты</header>
+                    <header className={s.header}>Создание анкеты</header>
 
                     <CustomInput
                         type="text"
@@ -197,7 +195,7 @@ class Form extends React.Component {
                         onBlur={this.onBlur}
                         onChange={this.onChange}
                     />
-                    <div className="color-div">{this.state.errors.nameEr}</div>
+                    <div className={s.colorDiv}>{this.state.errors.nameEr}</div>
 
                     <CustomInput
                         type="text"
@@ -210,7 +208,7 @@ class Form extends React.Component {
                         onBlur={this.onBlur}
                         onChange={this.onChange}
                     />
-                    <div className="color-div">{this.state.errors.surnameEr}</div>
+                    <div className={s.colorDiv}>{this.state.errors.surnameEr}</div>
 
                     <CustomInput
                         type="date"
@@ -222,7 +220,7 @@ class Form extends React.Component {
                         onBlur={this.onBlur}
                         onChange={this.onChange}
                     />
-                    <div className="color-div">{this.state.errors.dateEr}</div>
+                    <div className={s.colorDiv}>{this.state.errors.dateEr}</div>
                     <label>Телефон:</label>
 
                     <CustomInput
@@ -235,7 +233,7 @@ class Form extends React.Component {
                         onChange={this.validatePhone1}
                     />
 
-                    <div className="color-div">{this.state.errors.telEr}</div>
+                    <div className={s.colorDiv}>{this.state.errors.telEr}</div>
 
                     <CustomInput
                         type="text"
@@ -248,7 +246,7 @@ class Form extends React.Component {
                         onBlur={this.onBlur}
                         onChange={this.onChange}
                     />
-                    <div className="color-div">{this.state.errors.linkEr}</div>
+                    <div className={s.colorDiv}>{this.state.errors.linkEr}</div>
 
                     <CustomTextarea
                         rows="7"
@@ -266,7 +264,7 @@ class Form extends React.Component {
                         error={this.state.error}
                     />
 
-                    <div className="color-div">{this.state.errors.aboutEr}</div>
+                    <div className={s.colorDiv}>{this.state.errors.aboutEr}</div>
 
                     <CustomTextarea
                         rows="7"
@@ -283,7 +281,7 @@ class Form extends React.Component {
                         value={this.state.userSteak}
                         error={this.state.error2}
                     />
-                    <div className="color-div">{this.state.errors.steakEr}</div>
+                    <div className={s.colorDiv}>{this.state.errors.steakEr}</div>
 
                     <CustomTextarea
                         rows="7"
@@ -300,8 +298,8 @@ class Form extends React.Component {
                         value={this.state.projectDescrip}
                         error={this.state.error3}
                     />
-                    <div className="color-div">{this.state.errors.projectEr}</div>
-                    <div className="buttons">
+                    <div className={s.colorDiv}>{this.state.errors.projectEr}</div>
+                    <div className={s.buttons}>
                         <button type="reset" onClick={this.onReset}>
                             Отмена
                         </button>
@@ -318,4 +316,4 @@ class Form extends React.Component {
     }
 }
 
-export default Form;
+export default CustomForm;
